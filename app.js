@@ -77,12 +77,12 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
 
         // remove the username from global usernames list
-        if (socket.username != undefined) {
+        if (socket.username != undefined && socket.username != "unknown") {
             usernames.pop(socket.username)
         }
         // console.log("Removed User: " + socket.username)
         // echo globally that this client has left
-        if (socket.username != undefined) {
+        if (socket.username != undefined && socket.username != "unknown") {
             socket.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
             socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
         }
